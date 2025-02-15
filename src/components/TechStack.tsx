@@ -11,22 +11,9 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 
-const textureLoader = new THREE.TextureLoader();
-const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
-];
-const textures = imageUrls.map((url) => textureLoader.load(url));
-
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
-const spheres = [...Array(30)].map(() => ({
+const spheres = [...Array(4)].map(() => ({
   scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
 }));
 
@@ -126,6 +113,7 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
 
 const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -135,6 +123,11 @@ const TechStack = () => {
         .getBoundingClientRect().top;
       setIsActive(scrollY > threshold);
     };
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
     document.querySelectorAll(".header a").forEach((elem) => {
       const element = elem as HTMLAnchorElement;
       element.addEventListener("click", () => {
@@ -146,18 +139,24 @@ const TechStack = () => {
         }, 1000);
       });
     });
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  // Define materials for MERN stack
   const materials = useMemo(() => {
-    return textures.map(
-      (texture) =>
+    const colors = ["#10B981", "#3B82F6", "#61DAFB", "#68A063"]; // Colors for MongoDB, Express, React, Node
+    return colors.map(
+      (color) =>
         new THREE.MeshPhysicalMaterial({
-          map: texture,
-          emissive: "#ffffff",
-          emissiveMap: texture,
+          color,
+          emissive: color,
           emissiveIntensity: 0.3,
           metalness: 0.5,
           roughness: 1,
@@ -167,15 +166,33 @@ const TechStack = () => {
   }, []);
 
   return (
-    <div className="techstack">
-      <h2> My Techstack</h2>
+    <div
+      className="techstack"
+      style={{
+        textAlign: "center",
+        padding: isMobile ? "1rem" : "2rem",
+      }}
+    >
+      <h2
+        style={{
+          fontSize: isMobile ? "2rem" : "2.5rem",
+          marginBottom: "1.5rem",
+          color: "#333",
+        }}
+      >
+        My Techstack
+      </h2>
 
       <Canvas
         shadows
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
         camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
-        className="tech-canvas"
+        style={{
+          width: "100%",
+          height: isMobile ? "300px" : "500px",
+          margin: "0 auto",
+        }}
       >
         <ambientLight intensity={1} />
         <spotLight
@@ -193,7 +210,7 @@ const TechStack = () => {
             <SphereGeo
               key={i}
               {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
+              material={materials[i % materials.length]} // Assign materials in sequence
               isActive={isActive}
             />
           ))}
@@ -207,6 +224,30 @@ const TechStack = () => {
           <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
         </EffectComposer>
       </Canvas>
+
+      {/* Add text labels for MERN stack below the canvas */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: isMobile ? "1rem" : "2rem",
+          marginTop: "1.5rem",
+        }}
+      >
+        <div style={{ color: "#10B981", fontSize: isMobile ? "1rem" : "1.2rem", fontWeight: "bold" }}>
+          MongoDB
+        </div>
+        <div style={{ color: "#3B82F6", fontSize: isMobile ? "1rem" : "1.2rem", fontWeight: "bold" }}>
+          Express
+        </div>
+        <div style={{ color: "#61DAFB", fontSize: isMobile ? "1rem" : "1.2rem", fontWeight: "bold" }}>
+          React
+        </div>
+        <div style={{ color: "#68A063", fontSize: isMobile ? "1rem" : "1.2rem", fontWeight: "bold" }}>
+          Node.js
+        </div>
+      </div>
     </div>
   );
 };

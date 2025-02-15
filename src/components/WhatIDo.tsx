@@ -90,8 +90,7 @@ const WhatIDo = () => {
               <h3>DEVELOP</h3>
               <h4>Description</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae.
+              Full-Stack Web Developer | React.js, Node.js, MongoDB | Building dynamic, scalable, and user-friendly web apps 🚀
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
@@ -128,22 +127,17 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>DESIGN</h3>
+              <h3>Programming</h3>
               <h4>Description</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae
+              I specialize in Competitive Programming, and AI-driven solutions. I build scalable applications and solve complex coding challenges, constantly pushing the boundaries of innovation
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Blender</div>
-                <div className="what-tags">Zbrush</div>
-                <div className="what-tags">UI Design</div>
-                <div className="what-tags">Motion</div>
-                <div className="what-tags">Rigging</div>
-                <div className="what-tags">3D Animation</div>
-                <div className="what-tags">Character Design</div>
-                <div className="what-tags">Modelling</div>
+                <div className="what-tags">Python</div>
+                <div className="what-tags">C</div>
+                <div className="what-tags">Data Structres</div>
+                <div className="what-tags">Algoritms</div>
               </div>
               <div className="what-arrow"></div>
             </div>

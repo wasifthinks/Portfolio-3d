@@ -6,9 +6,7 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+        As a MERN Stack Developer with a strong command of Python and C, I specialize in building scalable and efficient full-stack solutions. My expertise in data structures and algorithms enables me to craft optimized applications that deliver both performance and reliability.
         </p>
       </div>
     </div>
