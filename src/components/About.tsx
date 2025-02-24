@@ -6,9 +6,9 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          I'm Wasif Azim, a passionate full-stack web developer and AI/ML enthusiast.  
+          I love building responsive websites, interactive applications, and AI-powered  
+          solutions. My journey into programming started as curiosity and grew into a passion.
         </p>
       </div>
     </div>
